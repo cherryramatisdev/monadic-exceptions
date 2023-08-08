@@ -1,2 +1,7 @@
+require: rubocop-rspec
+
 Style/RescueStandardError:
-	Enable: false
+  Enabled: false
+
+AllCops:
+  NewCops: enable

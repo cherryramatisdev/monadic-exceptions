@@ -12,7 +12,7 @@ module MonadicExceptions
     # @param callback Function
     # @return [Failure({error: Symbol, where: String, orig_exception: Exception}), Success(data)]
     def self.from_exception(callback)
-      result = method(callback).call
+      result = callback.call
 
       Dry::Monads::Result::Success.new(result)
     rescue => e

@@ -3,5 +3,8 @@ require: rubocop-rspec
 Style/RescueStandardError:
   Enabled: false
 
+RSpec/MultipleExpectations:
+  Enabled: false
+
 AllCops:
   NewCops: enable

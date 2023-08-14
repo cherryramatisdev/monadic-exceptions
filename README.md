@@ -7,3 +7,7 @@ This gem aims to provide an interface from plain ruby exceptions to monads(using
 - Initially I'm planning just to provide a interface between `Exception ->
 Result[Failure(), Success()]` where I try to provide as much information I can
 get from that exception so it's easier for you to manage it.
+
+## Disclaimers
+
+Today we only support `Proc` as a parameter to the `from_exception` method because I still didn't discover a nice way to manage method references.

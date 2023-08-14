@@ -5,12 +5,15 @@ require 'dry/monads/all'
 require_relative 'result_sanitizer'
 
 module MonadicExceptions
-  # Result wrap functions responsible to return Result monads
+  # Result wrap a static method called `from_exception` that receive a Proc and
+  # rescue it's exception raises returning either a Failure or a Success
+  # variant of the Result monad.
   class Result
-    # wraps a function and act as a interception
-    # returning to you result monads instead.
-    # @param callback Function
-    # @return [Failure({error: Symbol, where: String, orig_exception: Exception}), Success(data)]
+    # This static method act as a bridge between exception to Result, it
+    # supress any raises a method invokes and transform into a valid Failure
+    # return.
+    # @param callback [Proc]
+    # @return [Failure({error: Symbol, where: String, orig_exception: Exception, message: String}), Success(data)]
     def self.from_exception(callback)
       result = callback.call
 

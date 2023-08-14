@@ -2,6 +2,8 @@
 
 require 'dry/monads/all'
 
+require_relative 'result_sanitizer'
+
 module MonadicExceptions
   # Result wrap functions responsible to return Result monads
   class Result
@@ -14,7 +16,10 @@ module MonadicExceptions
 
       Dry::Monads::Result::Success.new(result)
     rescue => e
-      Dry::Monads::Result::Failure.new({ error: e.to_s.downcase.to_sym, where: callback, orig_exception: e })
+      exception_name = MonadicExceptions::ResultSanitizer.new.treat_exception_name(e.class.to_s)
+      Dry::Monads::Result::Failure.new({ error: exception_name,
+                                         where: callback.source_location.first, orig_exception: e,
+                                         message: e.message })
     end
   end
 end

@@ -2,8 +2,6 @@
 
 source 'https://rubygems.org'
 
-# gem "rails"
-
 gem 'dry-monads', '~> 1.6'
 
 gem 'rspec', '~> 3.12'
